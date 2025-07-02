@@ -27,9 +27,11 @@ function Nav() {
       });
       console.log(result.data);
 
-      navigate("/login");
+      getCurrentUser();
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate("/login");
     }
   };
   return (
@@ -39,27 +41,27 @@ function Nav() {
         <h1 className="text-[25px] text-[black] font-sans ">NextCart</h1>
       </div>
       <div className="w-[50%] lg:w-[40%] hidden md:flex">
-        <ul className="flex items-center justify-center gap-[19px] text-[white] ">
+        <ul className="flex items-center justify-center gap-[19px] text-[#565d87] font-bold hover:text-[19px] hover:ease-in hover:text-[#565d86]">
           <li
-            className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl"
+            className="text-[18px] cursor-pointer  py-[10px] px-[20px] rounded-2xl"
             onClick={() => navigate("/")}
           >
             HOME
           </li>
           <li
-            className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl"
+            className="text-[18px] cursor-pointer  py-[10px] px-[20px] rounded-2xl"
             onClick={() => navigate("/collection")}
           >
             COLLECTIONS
           </li>
           <li
-            className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl"
+            className="text-[18px] cursor-pointer  py-[10px] px-[20px] rounded-2xl"
             onClick={() => navigate("/about")}
           >
             ABOUT
           </li>
           <li
-            className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl"
+            className="text-[18px]  cursor-pointer  py-[10px] px-[20px]"
             onClick={() => navigate("/contact")}
           >
             CONTACT
@@ -100,7 +102,7 @@ function Nav() {
           className="w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block"
           onClick={() => navigate("/cart")}
         />
-        <p className="absolute w-[18px] h-[18px] items-center  justify-center bg-black px-[5px] py-[2px] text-white  rounded-full text-[9px] top-[10px] right-[23px] hidden md:block">
+        <p className="absolute w-[18px] h-[18px] items-center  justify-center bg-black px-[7px] py-[2px] text-white  rounded-full text-[9px] top-[10px] right-[23px] hidden md:block">
           {getCartCount()}
         </p>
       </div>
@@ -135,12 +137,13 @@ function Nav() {
             {userData && (
               <li
                 className="w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer"
-                onClick={() => {
-                  handleLogout();
+                onClick={async () => {
+                  await handleLogout();
+
                   setShowProfile(false);
                 }}
               >
-                LogOut
+                Logout
               </li>
             )}
             <li
