@@ -36,14 +36,14 @@ function Nav() {
   };
   return (
     <div className="w-[100vw] h-[70px] bg-[#ecfafaec] z-10 fixed top-0 flex  items-center justify-between px-[30px] shadow-md shadow-black ">
-      <div className="w-[20%] lg:w-[30%] flex items-center justify-start   gap-[10px] ">
+      <div className="w-[20%] lg:w-[20%] flex items-center justify-start   gap-[10px] ">
         <img src={logo} alt="" className="w-[30px]" />
         <h1 className="text-[25px] text-[black] font-sans ">NextCart</h1>
       </div>
-      <div className="w-[50%] lg:w-[40%] hidden md:flex">
-        <ul className="flex items-center justify-center gap-[19px] text-[#565d87] font-bold hover:text-[19px] hover:ease-in hover:text-[#565d86]">
+      <div className="w-[60%] lg:w-[40%] hidden md:flex justify-center">
+        <ul className="flex items-center justify-center gap-[10px] text-[#565d87] font-bold hover:text-[19px] hover:ease-in hover:text-[#565d86]">
           <li
-            className="text-[18px] cursor-pointer  py-[10px] px-[20px] rounded-2xl"
+            className="text-[18px] cursor-pointer  py-[10px] px-[10px] rounded-2xl"
             onClick={() => navigate("/")}
           >
             HOME
@@ -68,44 +68,47 @@ function Nav() {
           </li>
         </ul>
       </div>
-      <div className="w-[30%] flex items-center justify-end gap-[20px]">
-        {!showSearch && (
+      <div className="w-fit sm:w-[40%] md:w-[25%] lg:w-[17%] flex items-center justify-end gap-3 sm:gap-4 md:gap-5 relative pr-2">
+        {!showSearch ? (
           <IoSearchCircleOutline
-            className="w-[38px] h-[38px] text-[#000000]  cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 text-black cursor-pointer"
             onClick={() => {
               setShowSearch((prev) => !prev);
               navigate("/collection");
             }}
           />
-        )}
-        {showSearch && (
+        ) : (
           <IoSearchCircleSharp
-            className="w-[38px] h-[38px] text-[#000000]  cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 text-black cursor-pointer"
             onClick={() => setShowSearch((prev) => !prev)}
           />
         )}
-        {!userData && (
+
+        {!userData ? (
           <FaCircleUser
-            className="w-[29px] h-[29px] text-[#000000]  cursor-pointer"
+            className="w-6 h-6 sm:w-7 sm:h-7 text-black cursor-pointer"
             onClick={() => setShowProfile((prev) => !prev)}
           />
-        )}
-        {userData && (
+        ) : (
           <div
-            className="w-[30px] h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 bg-black text-white rounded-full flex items-center justify-center text-xs sm:text-sm cursor-pointer"
             onClick={() => setShowProfile((prev) => !prev)}
           >
-            {userData?.name.slice(0, 1)}
+            {userData?.name?.slice(0, 1)}
           </div>
         )}
-        <MdOutlineShoppingCart
-          className="w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block"
-          onClick={() => navigate("/cart")}
-        />
-        <p className="absolute w-[18px] h-[18px] items-center  justify-center bg-black px-[7px] py-[2px] text-white  rounded-full text-[9px] top-[10px] right-[23px] hidden md:block">
-          {getCartCount()}
-        </p>
+
+        <div className="relative hidden md:block">
+          <MdOutlineShoppingCart
+            className="w-7 h-7 text-black cursor-pointer"
+            onClick={() => navigate("/cart")}
+          />
+          <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+            {getCartCount()}
+          </span>
+        </div>
       </div>
+
       {showSearch && (
         <div className="w-[100%]  h-[80px] bg-[#d8f6f9dd] absolute top-[100%] left-0 right-0 flex items-center justify-center ">
           <input

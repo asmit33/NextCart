@@ -24,7 +24,7 @@ function Contact() {
             <p>random city , state , India</p>
           </p>
           <p className="lg:w-[80%] w-[100%] text-[white] md:text-[16px] text-[13px]">
-            <p>tel: +91-9876543210</p>
+            <p>tel: +91-7667878XXXX</p>
             <p>Email: admin@NextCart.com</p>
           </p>
           <p className="lg:w-[80%] w-[100%] text-[15px] text-[white] lg:text-[18px] mt-[10px] font-bold">
